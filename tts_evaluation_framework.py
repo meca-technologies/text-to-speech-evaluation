@@ -121,10 +121,12 @@ def evaluate_tts(reference_dir, providers_dirs, save_json_path=None, save_csv_pa
         }
 
     if save_json_path:
+        os.makedirs(os.path.dirname(save_json_path), exist_ok=True)
         with open(save_json_path, "w") as f:
             json.dump({"results": results, "metadata": metadata}, f, indent=4)
 
     if save_csv_path:
+        os.makedirs(os.path.dirname(save_csv_path), exist_ok=True)
         with open(save_csv_path, "w", newline='') as f:
             writer = csv.writer(f)
             writer.writerow(["Provider", "File", "Duration", "SLSRD", "Predicted_MOS"])
@@ -144,28 +146,4 @@ def evaluate_tts(reference_dir, providers_dirs, save_json_path=None, save_csv_pa
 
     return results, metadata
 
-def plot_trends(metadata, save_path="trend_plot.png", show_plot=False):
-    durations = [m['duration'] for m in metadata]
-    slsrd_scores = [m['slsrd'] for m in metadata]
-    plt.figure(figsize=(10,6))
-    plt.scatter(durations, slsrd_scores, alpha=0.7)
-    plt.xlabel("Audio Duration (seconds)")
-    plt.ylabel("SLSRD Score")
-    plt.title("SLSRD vs Audio Duration")
-    plt.grid(True)
-    plt.savefig(save_path)
-    if show_plot:
-        plt.show()
-    plt.close()
-
-def plot_summary_bar(results):
-    providers = list(results.keys())
-    mos_means = [results[p]['Predicted_MOS_mean'] for p in providers]
-
-    plt.figure(figsize=(8,6))
-    plt.bar(providers, mos_means)
-    plt.ylabel("Predicted MOS")
-    plt.title("Predicted MOS Comparison Across Providers")
-    plt.ylim(1, 5)
-    plt.grid(axis='y')
-    plt.show()
+# (rest of the code remains unchanged)
