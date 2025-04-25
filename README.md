@@ -14,7 +14,7 @@ This is a full evaluation framework to benchmark Text-to-Speech (TTS) providers 
 1. Clone the repo:
 
 ```bash
-git clone [https://github.com/yourusername/tts-evaluation-framework.git](https://github.com/meca-technologies/tts-evaluation-framework.git)
+git clone https://github.com/meca-technologies/tts-evaluation-framework.git
 cd tts-evaluation-framework
 
 pip install -r requirements.txt
