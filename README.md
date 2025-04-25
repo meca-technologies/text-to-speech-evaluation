@@ -28,7 +28,3 @@ synth_puretalk/        # Put Puretalk TTS outputs here
 synth_rime/            # Put Rime TTS output here
 synth_polly            # Put Amazon Polly output here
 synth_microsoft        # Put Micorsoft Azure TTS here
-
-# Make sure each synthesized folder contains matching filenames to the reference.
-
-# How to Run
