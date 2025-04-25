@@ -28,3 +28,26 @@ synth_puretalk/        # Put Puretalk TTS outputs here
 synth_rime/            # Put Rime TTS output here
 synth_polly            # Put Amazon Polly output here
 synth_microsoft        # Put Micorsoft Azure TTS here
+
+
+# Make sure each synthesized folder contains matching filenames to the reference.
+
+# How to Run
+
+python tts_evaluation_framework.py
+
+from tts_evaluation_framework import evaluate_tts
+
+reference_dir = "./reference_audio"
+providers_dirs = {
+    "ElevenLabs": "./synth_elevenlabs",
+    "OpenAI_TTS": "./synth_openai",
+    "PlayHT": "./synth_playht",
+    "Google_TTS": "./synth_google",
+    "Puretalk": "./synth_puretalk",
+    "Rime": "./synth_rime",
+    "Amazon_Polly": "./synth_polly",
+    "Microsoft": "./synth_microsoft"
+}
+
+scores, metadata = evaluate_tts(reference_dir, providers_dirs, save_json_path="results/results.json", save_csv_path="results/results.csv", verbose=True, show_plots=True)
